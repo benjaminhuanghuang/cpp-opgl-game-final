@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
 // From Game Programming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
+//
 // Released under the BSD License
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
@@ -9,12 +9,8 @@
 #include "FollowCamera.h"
 #include "Actor.h"
 
-FollowCamera::FollowCamera(Actor* owner)
-	:CameraComponent(owner)
-	,mHorzDist(350.0f)
-	,mVertDist(150.0f)
-	,mTargetDist(100.0f)
-	,mSpringConstant(64.0f)
+FollowCamera::FollowCamera(Actor *owner)
+		: CameraComponent(owner), mHorzDist(350.0f), mVertDist(150.0f), mTargetDist(100.0f), mSpringConstant(64.0f)
 {
 }
 
@@ -29,17 +25,17 @@ void FollowCamera::Update(float deltaTime)
 	Vector3 diff = mActualPos - idealPos;
 	// Compute acceleration of spring
 	Vector3 acel = -mSpringConstant * diff -
-		dampening * mVelocity;
+								 dampening * mVelocity;
 	// Update velocity
 	mVelocity += acel * deltaTime;
 	// Update actual camera position
 	mActualPos += mVelocity * deltaTime;
 	// Target is target dist in front of owning actor
 	Vector3 target = mOwner->GetPosition() +
-		mOwner->GetForward() * mTargetDist;
+									 mOwner->GetForward() * mTargetDist;
 	// Use actual position here, not ideal
 	Matrix4 view = Matrix4::CreateLookAt(mActualPos, target,
-		Vector3::UnitZ);
+																			 Vector3::UnitZ);
 	SetViewMatrix(view);
 }
 
@@ -51,10 +47,10 @@ void FollowCamera::SnapToIdeal()
 	mVelocity = Vector3::Zero;
 	// Compute target and view
 	Vector3 target = mOwner->GetPosition() +
-		mOwner->GetForward() * mTargetDist;
+									 mOwner->GetForward() * mTargetDist;
 	// Use actual position here, not ideal
 	Matrix4 view = Matrix4::CreateLookAt(mActualPos, target,
-		Vector3::UnitZ);
+																			 Vector3::UnitZ);
 	SetViewMatrix(view);
 }
 

@@ -11,12 +11,12 @@
 #include "Component.h"
 #include "LevelLoader.h"
 
-const char* Actor::TypeNames[NUM_ACTOR_TYPES] = {
-	"Actor",
-	"BallActor",
-	"FollowActor",
-	"PlaneActor",
-	"TargetActor",
+const char *Actor::TypeNames[NUM_ACTOR_TYPES] = {
+		"Actor",
+		"BallActor",
+		"FollowActor",
+		"PlaneActor",
+		"TargetActor",
 };
 
 Actor::Actor(Game *game) : mState(EActive),
@@ -100,8 +100,7 @@ void Actor::ComputeWorldTransform()
 	}
 }
 
-
-void Actor::RotateToNewForward(const Vector3& forward)
+void Actor::RotateToNewForward(const Vector3 &forward)
 {
 	// Figure out difference between original (unit x) and new
 	float dot = Vector3::Dot(Vector3::UnitX, forward);
@@ -154,7 +153,7 @@ void Actor::RemoveComponent(Component *component)
 	}
 }
 
-void Actor::LoadProperties(const rapidjson::Value& inObj)
+void Actor::LoadProperties(const rapidjson::Value &inObj)
 {
 	// Use strings for different states
 	std::string state;
@@ -181,7 +180,7 @@ void Actor::LoadProperties(const rapidjson::Value& inObj)
 	ComputeWorldTransform();
 }
 
-void Actor::SaveProperties(rapidjson::Document::AllocatorType& alloc, rapidjson::Value& inObj) const
+void Actor::SaveProperties(rapidjson::Document::AllocatorType &alloc, rapidjson::Value &inObj) const
 {
 	std::string state = "active";
 	if (mState == EPaused)
