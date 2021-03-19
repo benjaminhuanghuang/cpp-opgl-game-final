@@ -3,6 +3,22 @@
 
 ## Install
 
+```
+  brew instal glfw
+
+  brew instal glew
+
+  brew instal sdl
+  brew instal sdl_image
+  brew instal sdl_ttf
+
+  brew instal rapidjson
+```
+
+libSOIL : make the source code
+
+Fmode Engine: https://www.fmod.com/download
+
 
 
 ## use cmake with SDL
